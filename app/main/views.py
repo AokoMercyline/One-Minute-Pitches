@@ -18,6 +18,7 @@ def index():
     title = 'Home - Welcome this is where you belong'
     pitches= Pitch.get_all_pitches()
     return render_template('index.html', title = title, pitches= pitches)
+
 @main.route('/all')
 def all():
     '''
@@ -27,6 +28,7 @@ def all():
     pitches= Pitch.get_all_pitches()
     # upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
     return render_template('all.html', title = title, pitches= pitches)
+
 @main.route('/inteview/pitches/')
 def interview():
     '''
@@ -35,6 +37,7 @@ def interview():
     pitches= Pitch.get_all_pitches()
     title = 'Home - Welcome to The best Pitching Website Online'
     return render_template('interview.html', title = title, pitches= pitches )
+
 @main.route('/pick_up_lines/pitches/')
 def pick_up_line():
     '''
@@ -43,6 +46,7 @@ def pick_up_line():
     title = 'Pick Up Lines'
     pitches= Pitch.get_all_pitches()
     return render_template('pick_up_lines.html', title = title, pitches= pitches )
+
 @main.route('/promotion/pitches/')
 def promotion():
     '''
@@ -51,6 +55,7 @@ def promotion():
     title = 'Promotion Pitches'
     pitches= Pitch.get_all_pitches()
     return render_template('promotion.html', title = title, pitches= pitches )
+
 @main.route('/product/pitches/')
 def product():
     '''
@@ -59,6 +64,7 @@ def product():
     title = 'Product Pitches'
     pitches= Pitch.get_all_pitches()
     return render_template('product.html', title = title, pitches= pitches )
+
 #  end of category root functions
 @main.route('/pitch/<int:pitch_id>')
 def pitch(pitch_id):
@@ -69,6 +75,8 @@ def pitch(pitch_id):
     title = pitch_id
     pitch_comments = Comment.get_comments(pitch_id)
     return render_template('pitch.html',title= title ,found_pitch= found_pitch, pitch_comments= pitch_comments)
+
+
 @main.route('/pitch/new/', methods = ['GET','POST'])
 @login_required
 def new_pitch():
@@ -86,6 +94,7 @@ def new_pitch():
         new_pitch.save_pitch()
         return redirect(url_for('main.all'))
     return render_template('new_pitch.html', new_pitch_form= form, category= category)
+
 @main.route('/category/<int:id>')
 def category(id):
     '''
@@ -96,6 +105,7 @@ def category(id):
         abort(404)
     pitches_in_category = Pitch.get_pitch(id)
     return render_template('category.html' ,category= category, pitches= pitches_in_category)
+
 @main.route('/pitch/comments/new/<int:id>',methods = ['GET','POST'])
 @login_required
 def new_comment(id):
@@ -108,10 +118,7 @@ def new_comment(id):
     return render_template('new_comment.html',comment_form=form, vote_form= vote_form)
 
 
-@main.route('/')
-def index():
-    
-    return render_template("index.html")
+
 
 @main.route('/user/<uname>')
 @login_required
