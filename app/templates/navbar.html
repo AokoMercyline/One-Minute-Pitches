@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div class="navbar navbar-inverse" role="navigation">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a style="font-weight: bolder; font-size: 35px;" class="navbar-brand" href="/"> One Minute Pitch </a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li style="font-size: 25px; font-weight: bolder;"><a href="/">Home</a></li>
+
+                    <li class="nav-item active">
+                        <a class="nav-link mr-5 text-light" href="{{url_for('main.all')}}"><strong>All pitches</strong> <span class="sr-only">(current)</span></a>
+                      </li>
+                </ul>
+
+                
+
+                <ul class="nav navbar-nav navbar-right">
+                  {% if current_user.is_authenticated %}
+
+                  <li style="font-size: 25px; font-weight: bolder;"><a href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a></li>
+                  <li style="font-size: 25px; font-weight: bolder;"><a href="{{url_for('auth.logout')}}">Sign out</a></li>
+                  {% else %}
+                  <li style="font-size: 25px; font-weight: bolder;"><a href="{{url_for('auth.login')}}">Sign in</a></li>
+                  {%endif%}
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link mr-5 text-light" href="/"><i class="fa fa-home mr-2"></i><strong>HOME</strong> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link mr-5 text-light" href="{{url_for('main.all')}}"><strong>All pitches</strong> <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <strong>Select Category</strong>
+              </a>
+              <div class="dropdown-menu bg-primary" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{url_for('main.interview')}}"><strong>Interview Pitches</strong></a>
+                <a class="dropdown-item" href="{{url_for('main.pick_up_line')}}"><strong> pick Up Lines</strong> </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="{{url_for('main.promotion')}}"><strong>Promotion Pitches</strong></a>
+                <a class="dropdown-item"  href="{{url_for('main.product')}}"><strong>Product Pitches</strong></a>
+              </div>
+            </li>
+          </ul>
+    </div>
+  </body>
+</html>
