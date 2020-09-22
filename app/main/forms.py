@@ -17,7 +17,7 @@ class UpvoteForm(FlaskForm):
 class DownvoteForm(FlaskForm):
     '''
     Class to create a wtf form for downvoting a pitch
-    '''
+    '''  
     submit = SubmitField('Downvote')
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])
