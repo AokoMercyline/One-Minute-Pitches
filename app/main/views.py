@@ -27,7 +27,7 @@ def all():
     title = 'Home - Welcome this is where you belong'
     pitches= Pitch.get_all_pitches()
     # upvotes = Upvote.get_all_upvotes(pitch_id=Pitch.id)
-    return render_template('all.html', title = title, pitches= pitches)
+    return render_template('main.html', title = title, pitches= pitches)
 
 @main.route('/inteview/pitches/')
 def interview():
@@ -56,14 +56,6 @@ def promotion():
     pitches= Pitch.get_all_pitches()
     return render_template('promotion.html', title = title, pitches= pitches )
 
-@main.route('/product/pitches/')
-def product():
-    '''
-    View root page function that returns the index page and its data
-    '''
-    title = 'Product Pitches'
-    pitches= Pitch.get_all_pitches()
-    return render_template('product.html', title = title, pitches= pitches )
 
 #  end of category root functions
 @main.route('/pitch/<int:pitch_id>')
