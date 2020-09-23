@@ -7,6 +7,7 @@ class Config:
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mercy:1234@localhost/one_minute_pitch'
     UPLOADED_PHOTOS_DEST ='app/static/photos'  
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     
     #  email configurations
     MAIL_SERVER = 'smtp.gmail.com'
@@ -25,9 +26,11 @@ class ProdConfig(Config):
 
 class TestConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mercy:1234@localhost/one_minute_pitch_test'
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     
 class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://mercy:1234@localhost/one_minute_pitch'
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
     DEBUG = True
 
 config_options = {
